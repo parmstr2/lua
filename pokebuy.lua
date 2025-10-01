@@ -86,7 +86,7 @@ function purchasePoke(poke)
                 mon.setCursorPos(x/2 - #rejection/2, y/2)
                 print(rejection)
             end
-        elseif (event[1] == "mouse_click") then
+        elseif (event[1] == "monitor_touch") then
             clearMon()
             break
         end
@@ -122,7 +122,7 @@ while true do
 
     local event = {os.pullEvent()}
 
-    if (event[1] == "mouse_click") then
+    if (event[1] == "monitor_touch") then
         if (button1.clicked(event[3], event[4])) then
             purchasePoke(poke1)
         elseif (button2.clicked(event[3], event[4])) then
