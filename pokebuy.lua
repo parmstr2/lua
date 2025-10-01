@@ -95,15 +95,15 @@ function purchasePoke(poke)
     end
 end
 
-while true do
-    -- Generate 6 random pokemon
-    local poke1 = generatePoke()
-    local poke2 = generatePoke()
-    local poke3 = generatePoke()
-    local poke4 = generatePoke()
-    local poke5 = generatePoke()
-    local poke6 = generatePoke()
+-- Generate 6 random pokemon
+local poke1 = generatePoke()
+local poke2 = generatePoke()
+local poke3 = generatePoke()
+local poke4 = generatePoke()
+local poke5 = generatePoke()
+local poke6 = generatePoke()
 
+while true do
     clearMon()
 
     -- Create 6 buttons to represent those pokemon
@@ -138,5 +138,12 @@ while true do
         elseif (button6.clicked(event[3], event[4])) then
             purchasePoke(poke6)
         end
+    elseif (event[1] == "timer")
+        poke1 = generatePoke()
+        poke2 = generatePoke()
+        poke3 = generatePoke()
+        poke4 = generatePoke()
+        poke5 = generatePoke()
+        poke6 = generatePoke()
     end
 end
