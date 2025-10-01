@@ -103,7 +103,7 @@ while true do
     local poke6 = generatePoke()
 
     clearMon()
-    
+
     -- Create 6 buttons to represent those pokemon
     local button1 = Button(15, 5, poke1[1] .. "(" .. poke1[2] .. ")")
     button1.draw(mon)
@@ -118,7 +118,7 @@ while true do
     local button6 = Button(35, 13, poke6[1] .. "(" .. poke6[2] .. ")")
     button6.draw(mon)
 
-    os.startTimer(10)
+    os.startTimer(86400)
 
     local event = {os.pullEvent()}
 
