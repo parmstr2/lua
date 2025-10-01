@@ -93,17 +93,17 @@ function purchasePoke(poke)
     end
 end
 
--- Generate 6 random pokemon
-local poke1 = generatePoke()
-local poke2 = generatePoke()
-local poke3 = generatePoke()
-local poke4 = generatePoke()
-local poke5 = generatePoke()
-local poke6 = generatePoke()
-
-clearMon()
-
 while true do
+    -- Generate 6 random pokemon
+    local poke1 = generatePoke()
+    local poke2 = generatePoke()
+    local poke3 = generatePoke()
+    local poke4 = generatePoke()
+    local poke5 = generatePoke()
+    local poke6 = generatePoke()
+
+    clearMon()
+    
     -- Create 6 buttons to represent those pokemon
     local button1 = Button(15, 5, poke1[1] .. "(" .. poke1[2] .. ")")
     button1.draw(mon)
