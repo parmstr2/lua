@@ -7,9 +7,6 @@ local barrel = peripheral.find("minecraft:barrel")
 local coins = peripheral.find("sophisticatedstorage:barrel")
 local trash = peripheral.find("trashcans:item_trash_can_tile")
 
--- make sure math.random is seeded once at the start of your program
-math.randomseed(os.time())
-
 function clearMon()
     mon.setBackgroundColor(colors.black)
     mon.setTextColor(colors.white)
