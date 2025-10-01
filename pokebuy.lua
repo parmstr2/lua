@@ -69,7 +69,7 @@ function purchasePoke(poke)
                 commands.exec("pokegive " .. event[2] .. " " .. poke[1])
                 change = change * -1
                 for i = 1, 27 do
-                    if (barrel.getItemDetail(i).name) then
+                    if (barrel.getItemDetail(i)) then
                         if (string.match(barrel.getItemDetail(i).name, "numismatics:%w+")) then
                             barrel.pushItems(peripheral.getName(coins), i)
                         end
