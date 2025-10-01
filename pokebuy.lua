@@ -10,9 +10,9 @@ local coins = peripheral.wrap("left")
 math.randomseed(os.time())
 
 function clearMon()
-    term.setBackgroundColor(colors.black)
-    term.setTextColor(colors.white)
-    term.clear()
+    mon.setBackgroundColor(colors.black)
+    mon.setTextColor(colors.white)
+    mon.clear()
 end
 
 function generatePoke() 
@@ -40,6 +40,7 @@ function scanPayment(poke)
             payment = payment - (items[i].count * 512)
         elseif (items[i].name == "numismatics:sun") then
             payment = payment - (items[i].count * 4096)
+        end
     end
 
     return payment
@@ -47,32 +48,32 @@ end
 
 function purchasePoke(poke)
     clearMon()
-    local x, y = term.getSize()
+    local x, y = mon.getSize()
 
     local sentence1 = "To confirm the purchase of " .. poke[1]
     local sentence2 = "click the player detector to the right."
     local sentence3 = "To cancel click anywhere on the screen."
 
-    term.setCursorPos(x/2 - #sentence1/2, y/2)
+    mon.setCursorPos(x/2 - #sentence1/2, y/2)
     print(sentence1)
-    term.setCursorPos(x/2 - #sentence2/2, y/2+1)
+    mon.setCursorPos(x/2 - #sentence2/2, y/2+1)
     print(sentence2)
-    term.setCursorPos(x/2 - #sentence3/2, y/2+2)
+    mon.setCursorPos(x/2 - #sentence3/2, y/2+2)
     print(sentence3)
 
     while true do
         local event = {os.pullEvent()}
         if (event[1] == "playerClick") then
             local change = scanPayment(poke)
-            if (if change <= 0) then
+            if (change <= 0) then
                 commands.exec("pokegive " .. event[2] .. " " .. poke[1])
                 change = change * -1
                 for i = 1, 27 do
-                    if (string.match(barrel.getItemDetail(i).name), "numismatics:%w+") then
+                    if (string.match(barrel.getItemDetail(i).name, "numismatics:%w+")) then
                         barrel.pushItems(peripheral.getName(coins), i)
                     end
                 end
-                if change > 0 then
+                if (change > 0) then
                     coin = {1, 8, 16, 64, 512, 4096}
                     for i = 6, 1, -1 do
                         coins.pushItems(peripheral.getName(barrel), i, change % coin[i])
@@ -82,7 +83,7 @@ function purchasePoke(poke)
             else
                 clearMon()
                 local rejection = "I'm sorry but you have insufficient funds"
-                term.setCursorPos(x/2 - #rejection/2, y/2)
+                mon.setCursorPos(x/2 - #rejection/2, y/2)
                 print(rejection)
             end
         elseif (event[1] == "mouse_click") then
@@ -105,19 +106,19 @@ clearMon()
 while true do
     -- Create 6 buttons to represent those pokemon
     local button1 = Button(15, 5, poke1[1] .. "(" .. poke1[2] .. ")")
-    button1.draw(term)
+    button1.draw(mon)
     local button2 = Button(15, 9, poke2[1] .. "(" .. poke2[2] .. ")")
-    button2.draw(term)
+    button2.draw(mon)
     local button3 = Button(15, 13, poke3[1] .. "(" .. poke3[2] .. ")")
-    button3.draw(term)
+    button3.draw(mon)
     local button4 = Button(35, 5, poke4[1] .. "(" .. poke4[2] .. ")")
-    button4.draw(term)
+    button4.draw(mon)
     local button5 = Button(35, 9, poke5[1] .. "(" .. poke5[2] .. ")")
-    button5.draw(term)
+    button5.draw(mon)
     local button6 = Button(35, 13, poke6[1] .. "(" .. poke6[2] .. ")")
-    button6.draw(term)
+    button6.draw(mon)
 
-    os.startTimer(86400)
+    os.startTimer(10)
 
     local event = {os.pullEvent()}
 
