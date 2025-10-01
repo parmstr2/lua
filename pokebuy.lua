@@ -55,11 +55,11 @@ function purchasePoke(poke)
     local sentence3 = "To cancel click anywhere on the screen."
 
     mon.setCursorPos(x/2 - #sentence1/2, y/2)
-    print(sentence1)
+    mon.write(sentence1)
     mon.setCursorPos(x/2 - #sentence2/2, y/2+1)
-    print(sentence2)
+    mon.write(sentence2)
     mon.setCursorPos(x/2 - #sentence3/2, y/2+2)
-    print(sentence3)
+    mon.write(sentence3)
 
     while true do
         local event = {os.pullEvent()}
@@ -84,7 +84,7 @@ function purchasePoke(poke)
                 clearMon()
                 local rejection = "I'm sorry but you have insufficient funds"
                 mon.setCursorPos(x/2 - #rejection/2, y/2)
-                print(rejection)
+                mon.write(rejection)
             end
         elseif (event[1] == "monitor_touch") then
             clearMon()
