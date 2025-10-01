@@ -78,15 +78,18 @@ function purchasePoke(poke)
                 if (change > 0) then
                     coin = {1, 8, 16, 64, 512, 4096}
                     for i = 6, 1, -1 do
-                        coins.pushItems(peripheral.getName(barrel), i, change % coin[i])
-                        change = change - (coin[i] * (change % coin[i]))
+                        coins.pushItems(peripheral.getName(barrel), i, math.floor(change/coin[i]))
+                        change = change % coin[i]
                     end
                 end
+                break
             else
                 clearMon()
                 local rejection = "I'm sorry but you have insufficient funds"
                 mon.setCursorPos(x/2 - #rejection/2, y/2)
                 mon.write(rejection)
+                sleep(3)
+                break
             end
         elseif (event[1] == "monitor_touch") then
             clearMon()
