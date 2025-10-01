@@ -138,7 +138,7 @@ while true do
         elseif (button6.clicked(event[3], event[4])) then
             purchasePoke(poke6)
         end
-    elseif (event[1] == "timer")
+    elseif (event[1] == "timer") then
         poke1 = generatePoke()
         poke2 = generatePoke()
         poke3 = generatePoke()
