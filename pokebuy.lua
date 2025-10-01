@@ -67,7 +67,7 @@ function purchasePoke(poke)
         if (event[1] == "playerClick") then
             local change = scanPayment(poke)
             if (change <= 0) then
-                commands.exec("pokegive " .. event[2] .. " " .. poke[1])
+                commands.exec("pokegiveother " .. event[2] .. " " .. poke[1])
                 change = change * -1
                 for i = 1, 27 do
                     if (barrel.getItemDetail(i)) then
