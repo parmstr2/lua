@@ -4,7 +4,7 @@ require("pokelist")
 local mon = peripheral.wrap("top")
 local player = peripheral.find("player_detector")
 local barrel = peripheral.find("minecraft:barrel")
-local coins = peripheral.wrap("left")
+local coins = peripheral.find("sophisticatedstorage:barrel")
 
 -- make sure math.random is seeded once at the start of your program
 math.randomseed(os.time())
@@ -69,8 +69,10 @@ function purchasePoke(poke)
                 commands.exec("pokegive " .. event[2] .. " " .. poke[1])
                 change = change * -1
                 for i = 1, 27 do
-                    if (string.match(barrel.getItemDetail(i).name, "numismatics:%w+")) then
-                        barrel.pushItems(peripheral.getName(coins), i)
+                    if (barrel.getItemDetail(i).name) then
+                        if (string.match(barrel.getItemDetail(i).name, "numismatics:%w+")) then
+                            barrel.pushItems(peripheral.getName(coins), i)
+                        end
                     end
                 end
                 if (change > 0) then
