@@ -5,6 +5,7 @@ local mon = peripheral.wrap("top")
 local player = peripheral.find("player_detector")
 local barrel = peripheral.find("minecraft:barrel")
 local coins = peripheral.find("sophisticatedstorage:barrel")
+local trash = peripheral.find("trashcans:item_trash_can_tile")
 
 -- make sure math.random is seeded once at the start of your program
 math.randomseed(os.time())
@@ -71,7 +72,7 @@ function purchasePoke(poke)
                 for i = 1, 27 do
                     if (barrel.getItemDetail(i)) then
                         if (string.match(barrel.getItemDetail(i).name, "numismatics:%w+")) then
-                            barrel.pushItems(peripheral.getName(coins), i)
+                            barrel.pushItems(peripheral.getName(trash), i)
                         end
                     end
                 end
