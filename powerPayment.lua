@@ -26,10 +26,8 @@ function scanPayment()
 end
 
 while true do
-    local payment = scanPayment()
     os.pullEvent("redstone")
-    energy.setTransferRateLimit(9600 * payment)
-    energy.setTransferRateLimit(0)
+    local payment = scanPayment()
     if (payment > 0) then
         for i = 1, 27 do
             if (barrel.getItemDetail(i)) then
@@ -39,5 +37,8 @@ while true do
             end
         end
     end
-    sleep(3)
+    energy.setTransferRateLimit(480 * spayment)
+    sleep(0.95)
+    energy.setTransferRateLimit(0)
+    sleep(0.1)
 end
