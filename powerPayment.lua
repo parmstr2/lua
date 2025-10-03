@@ -37,7 +37,7 @@ while true do
             end
         end
     end
-    energy.setTransferRateLimit(480 * spayment)
+    energy.setTransferRateLimit(480 * payment)
     sleep(0.95)
     energy.setTransferRateLimit(0)
     sleep(0.1)
