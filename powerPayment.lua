@@ -26,9 +26,18 @@ function scanPayment()
 end
 
 while true do
-    local payment = 0
+    local payment = scanPayment()
     os.pullEvent("redstone")
     energy.setTransferRateLimit(9600 * payment)
     energy.setTransferRateLimit(0)
+    if (payment > 0) then
+        for i = 1, 27 do
+            if (barrel.getItemDetail(i)) then
+                if (string.match(barrel.getItemDetail(i).name, "numismatics:%w+")) then
+                    barrel.pushItems(peripheral.getName(trash), i)
+                end
+            end
+        end
+    end
     sleep(3)
 end
