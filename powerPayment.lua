@@ -37,8 +37,10 @@ while true do
             end
         end
     end
-    energy.setTransferRateLimit(480 * payment)
-    sleep(0.95)
+    for i = 1, payment do
+        energy.setTransferRateLimit(480)
+        sleep(0.95)
+    end
     energy.setTransferRateLimit(0)
     sleep(0.1)
 end
