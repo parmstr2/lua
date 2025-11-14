@@ -44,8 +44,8 @@ while true do
         --    - small payments: about 1s
         --    - large payments: up to 10s
         local seconds = paymentCoins
-        if seconds < 1 then seconds = 1 end
-        if seconds > 10 then seconds = 10 end
+        if seconds < 64 then seconds = 1 end
+        if seconds > 64 then seconds = 10 end
 
         -- 3) Compute FE/tick needed to send totalFE in `seconds`
         -- ComputerCraft runs at 20 ticks per second
