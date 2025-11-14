@@ -3,29 +3,31 @@ local barrel = peripheral.find("minecraft:barrel")
 local trash = peripheral.find("trashcans:item_trash_can_tile")
 
 local timeMult = 1
+local itemCount = 0
 
 function scanPayment()
     local items = barrel.list()
     local payment = 0
+    itemCount = #items
 
     for i = 1, #items do
         if (items[i].name == "numismatics:spur") then
             payment = payment + items[i].count
         elseif (items[i].name == "numismatics:bevel") then
             payment = payment + (items[i].count * 8)
-            timeMult = 10
+            timeMult = 8
         elseif (items[i].name == "numismatics:sprocket") then
             payment = payment + (items[i].count * 16)
-            timeMult = 100
+            timeMult = 16
         elseif (items[i].name == "numismatics:cog") then
             payment = payment +(items[i].count * 64)
-            timeMult = 1000
+            timeMult = 64
         elseif (items[i].name == "numismatics:crown") then
             payment = payment + (items[i].count * 512)
-            timeMult = 10000
+            timeMult = 512
         elseif (items[i].name == "numismatics:sun") then
             payment = payment + (items[i].count * 4096)
-            timeMult = 100000
+            timeMult = 4096
         end
     end
 
@@ -45,7 +47,7 @@ while true do
         end
     end
     for i = 1, 10 do
-        energy.setTransferRateLimit(48 * timeMult)
+        energy.setTransferRateLimit(480 * timeMult * math.floor(itemCount / 10))
         sleep(0.95)
     end
     energy.setTransferRateLimit(0)
